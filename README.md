@@ -5,6 +5,7 @@ Documentación variada sobre el proceso de práctica Enero-Febrero
 ### Bitácora
 </br>
 | Fecha | 03/01/2019 |
+| --- | --- |
 | Hora Inicio | List all new or modified files |
 | Hora término | Show file differences that haven't been staged |
 | Actividades Desarrolladas | - Creación de scripts para automatización de tareas</br>
