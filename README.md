@@ -7,7 +7,8 @@ Lista secuencial de la bitácora día a día
 </br>
 ##### Fecha
 Jueves 3 de Enero del 2018
-```##### Hora Inicio
+```
+##### Hora Inicio
 09:30
 ##### Hora término
 18:30
