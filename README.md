@@ -5,8 +5,8 @@ Documentación variada sobre el proceso de práctica Enero-Febrero
 ### Bitácora
 Lista secuencial de la bitácora día a día
 </br>
-#### Fecha
-Jueves 3 de Enero del 2018
+
+#### Jueves 3 de Enero del 2018
 ```
 ##### Hora Inicio
 09:30
