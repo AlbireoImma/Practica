@@ -3,6 +3,7 @@ Documentación variada sobre el proceso de práctica Enero-Febrero
 </br>
 </br>
 ### Bitácora
+Lista secuencial de la bitácora día a día
 </br>
 ##### Fecha
 Jueves 3 de Enero del 2018</br>
