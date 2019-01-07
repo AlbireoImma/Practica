@@ -37,5 +37,9 @@ function get-loggedonuser ($computername){
     }
 }
 $ip = "172.22.1.56"
+$ip2 = "172.20.2.48"
+$ip3 = "172.20.2.25"
 $date = Get-Date -Format d
 get-loggedonuser($ip) >> $ip"_auth_$date.txt"
+get-loggedonuser($ip2) >> $ip2"_auth_$date.txt"
+get-loggedonuser($ip3) >> $ip3"_auth_$date.txt"
