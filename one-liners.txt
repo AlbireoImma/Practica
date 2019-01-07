@@ -1,0 +1,5 @@
+# Ping individual con muestra 1
+$d = 56
+write-host "172.22.1.$($d): $(Test-Connection -count 1 -comp 172.22.1.$($d) -quiet)"
+# Barrido de Ping
+1..254 | % {"172.22.1.$($_): $(Test-Connection -count 1 -comp 172.22.1.$($_) -quiet)"}
