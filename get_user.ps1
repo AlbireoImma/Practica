@@ -28,7 +28,7 @@ Function Get-QUser {
 							ID = $line.SubString(42, 2).Trim()
 							State = $line.SubString(46, 6).Trim()
 							IdleTime = $idle
-							LogonTime = $line.SubString(65)
+							LogonTime = [datetime]$line.SubString(65)
 						}
 	}
 }
