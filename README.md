@@ -38,3 +38,19 @@ Lista secuencial de la bitácora día a día
 - Continuar con la investigación sobre la mitigación de ataques especificos y medios preventivos
 - Investigar las herramientas nepenthes y anubis
 ```
+
+#### Lunes 7 de Enero del 2018
+```
+##### Hora Inicio
+08:30
+##### Hora término
+18:00
+##### Actividades Desarrolladas
+- Scripting para monitorizar usuarios conectados a las ip de los servidores
+- Buscar cuentas zombies dentro del servidor para cerrarlas
+- Investigación ataques producidos con anterioridad y comprobación de la mitigación
+##### Actividades Pendientes
+- Arreglar el problema del RCP en algunos computadores con errores de comunicación 0x6BA
+- Investigar problemas del error 0x5, continuándose con permisos privilegiados
+- Investigar monitoreo de endpoints
+```
