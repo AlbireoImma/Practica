@@ -54,3 +54,19 @@ Lista secuencial de la bitácora día a día
 - Investigar problemas del error 0x5, continuándose con permisos privilegiados
 - Investigar monitoreo de endpoints
 ```
+
+#### Martes 8 de Enero del 2018
+```
+##### Hora Inicio
+08:30
+##### Hora término
+18:00
+##### Actividades Desarrolladas
+- Acceso a procesos y servicios de una máquina mediante wmi y su ip
+- Obtención de wmi de forma global y búsqueda específica por máquina y nombre de la clase wmi
+- Alternativa encontrada a quser (RCP) mediante uso de wmi
+##### Actividades Pendientes
+- Arreglar el problema del RCP en algunos computadores con errores de comunicación 0x6BA
+- Investigar monitoreo de endpoints
+- Investigar herramientas SIEM, tanto como métodos de heurística
+```
