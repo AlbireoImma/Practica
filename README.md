@@ -70,3 +70,37 @@ Lista secuencial de la bitácora día a día
 - Investigar monitoreo de endpoints
 - Investigar herramientas SIEM, tanto como métodos de heurística
 ```
+
+#### Miércoles 9 de Enero del 2018
+```
+##### Hora Inicio
+08:30
+##### Hora término
+18:00
+##### Actividades Desarrolladas
+- Investigar herramientas SIEM, tanto como métodos de heurística
+- Cambio de rango de IP para el funcionamiento de los scripts
+- Desarrollo de un menú para la colección de scripts en un Bash
+- Uso de logs para la conservación de datos
+##### Actividades Pendientes
+- Relacionar los distintos logs, para encontrar fallas
+- Centralizar los datos para obtener un histórico
+- Modificar funcionamiento de algunos scripts para barridos de IP
+```
+
+#### Jueves 10 de Enero del 2018
+```
+##### Hora Inicio
+08:30
+##### Hora término
+18:00
+##### Actividades Desarrolladas
+- Intercambio de log a csv para integración con MS Excel
+- Modificación y mejora del menu en Batch
+- Modificación de scripts para integrar barrido de IP, enfocados al usuario
+- Modificación de scripts para el parseo de información a CSV
+##### Actividades Pendientes
+- Generación de métricas con los datos obtenidos
+- Recopilar distintas métricas de las ya obtenidas
+- Buscar soluciones para el error 0x6BA, ya sea mediante el registro o reglas de firewall
+```
