@@ -6,7 +6,7 @@ Documentación variada sobre el proceso de práctica Enero-Febrero
 Lista secuencial de la bitácora día a día
 </br>
 
-#### Jueves 3 de Enero del 2018
+#### Jueves 3 de Enero del 2018 [9 Horas] [9h]
 ```
 ##### Hora Inicio
 09:30
@@ -22,7 +22,7 @@ Lista secuencial de la bitácora día a día
 - Intentar abrir smtp en el servidor de prueba
 - Continuar con la investigación sobre la mitigación de ataques especificos y medios preventivos
 ```
-#### Viernes 4 de Enero del 2018
+#### Viernes 4 de Enero del 2018 [7,5 Horas] [16,5h]
 ```
 ##### Hora Inicio
 08:30
@@ -39,7 +39,7 @@ Lista secuencial de la bitácora día a día
 - Investigar las herramientas nepenthes y anubis
 ```
 
-#### Lunes 7 de Enero del 2018
+#### Lunes 7 de Enero del 2018 [9,5 Horas] [26h]
 ```
 ##### Hora Inicio
 08:30
@@ -55,7 +55,7 @@ Lista secuencial de la bitácora día a día
 - Investigar monitoreo de endpoints
 ```
 
-#### Martes 8 de Enero del 2018
+#### Martes 8 de Enero del 2018 [9,5 Horas] [35,5h]
 ```
 ##### Hora Inicio
 08:30
@@ -71,7 +71,7 @@ Lista secuencial de la bitácora día a día
 - Investigar herramientas SIEM, tanto como métodos de heurística
 ```
 
-#### Miércoles 9 de Enero del 2018
+#### Miércoles 9 de Enero del 2018 [9,5 Horas] [45h]
 ```
 ##### Hora Inicio
 08:30
@@ -88,7 +88,7 @@ Lista secuencial de la bitácora día a día
 - Modificar funcionamiento de algunos scripts para barridos de IP
 ```
 
-#### Jueves 10 de Enero del 2018
+#### Jueves 10 de Enero del 2018 [9,5 Horas] [54,5h]
 ```
 ##### Hora Inicio
 08:30
