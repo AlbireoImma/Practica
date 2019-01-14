@@ -26,7 +26,8 @@ while($true)
     # Iteramos desde 1 hasta la variable $repeat_count declarada al inicio, esta nos dicta cuantas muestras tomaremos
     write-host [(Get-Date -Format g)]"Working..."
     foreach($turn in 1..$repeat_count) {
-        $cpu = (gwmi -class Win32_Processor).LoadPercentage # Obtenemos la carga de la CPU mediante un wmi, este procedimiento cambia si el equipo tiene mas de una CPU
+        # Obtenemos la carga de la CPU mediante un wmi, este procedimiento cambia si el equipo tiene mas de una CPU
+        $cpu = (get-wmiobject Win32_PerfformattedData_PerfOS_Processor | select name,percentprocessortime | where {$_.name -eq "_Total"}).percentprocessortime
         write-host [(Get-Date -Format g)]"CPU utilization is Currently at $($cpu)%" # Imprimimos la carga actual de la muestra
         If($cpu -ge $cpu_threshold) { # Si la muestra supera nuestro umbral determinado por la variable $cpu_threshold
             $hit = $hit+1 # Si se cumple la condición aumentamos nuestras muestras relevantes en uno
