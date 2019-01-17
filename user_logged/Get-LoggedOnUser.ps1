@@ -11,13 +11,14 @@ begin {
 }
 process {
     write-host [(Get-Date -Format g)]" Inicio de Trabajo" -Foreground "Green"
-	$date = Get-Date -Format d # Fecha para el formato del archivo se puede usar g o f como argumento para distintos formatos
+    $date = (Get-Date).ToString("%d%m%yyyy_%HH:%mm") # Fecha para el formato del archivo se puede usar g o f como argumento para distintos formatos
+    $ruta = ".\user_logged\log\users_verbose_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
     [string[]]$servers= Get-Content '.\listado_ip2.txt' # Lista de servidores
     [string[]]$DNS= Get-Content '.\listado_dns2.txt' # Lista de dns
     $contador = 0 # Para movernos por los nombres de dominio mientras recorremos los servidores
     $ComputerName = $servers # Asimilamos los servidores en el archivo "listado_ip2.txt"
     # Encabezado del CSV el cual da el orden y tipo de separacion al archivo
-    "USERNAME;COMPUTER_NAME;SERVER;SESSION;ID;STATE;IDLE_TIME;LOGON_TIME;ERROR" >>".\user_logged\log\users_verbose_$date.csv"
+    "USERNAME;COMPUTER_NAME;SERVER;SESSION;ID;STATE;IDLE_TIME;LOGON_TIME;ERROR" >> $ruta
     foreach ($Computer in $ComputerName) {
         try {
             # Query del servidor dentro del for, nos saltamos la primera linea que es de formato de la query
@@ -29,7 +30,6 @@ process {
                     ComputerName = $Computer # Nombre del equipo o VM
                     Server = $DNS[$contador] # Nombre del servidor dado por la lista retenida al inicio
                 }
-
                 # Si la sesión esta desconectada se usan parámetros distintos
                 if ($CurrentLine[2] -eq 'Disc') {
                         $HashProps.SessionName = $null # Usamos null al estar desconectada
@@ -52,7 +52,7 @@ process {
                 $linea = $objeto.UserName + ";" + $objeto.ComputerName + ";" + $objeto.Server + ";" 
                 $linea = $linea + $objeto.SessionName + ";" + $objeto.Ident + ";" + $objeto.State + ";" + $objeto.IdleTime + ";" + $objeto.LogonTime + ";" + $objeto.Error
                 # write-host $linea -Foreground "Red" # Debug
-                $linea >> ".\user_logged\log\users_verbose_$date.csv" # Escribimos en el CSV
+                $linea >> $ruta # Escribimos en el CSV
             }
         } catch {
             # No pudimos obtener la query -> Problemas de RPC o administrativos
@@ -64,7 +64,7 @@ process {
             } | Select-Object -Property UserName,ComputerName,Server,SessionName,Id,State,IdleTime,LogonTime,Error
             $linea = $objeto.UserName + ";" + $objeto.ComputerName + ";" + $objeto.Server + ";" 
             $linea = $linea + $objeto.SessionName + ";" + $objeto.Ident + ";" + $objeto.State + ";" + $objeto.IdleTime + ";" + $objeto.LogonTime + ";" + $objeto.Error
-			$linea >> ".\user_logged\log\users_verbose_$date.csv" # Escribimos en el CSV
+			$linea >> $ruta # Escribimos en el CSV
         }
         $contador += 1
     }

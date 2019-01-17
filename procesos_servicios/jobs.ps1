@@ -1,6 +1,23 @@
-Get-WmiObject Win32_PerfFormattedData_PerfProc_Process `
-    | Where-Object { $_.name -inotmatch '_total|idle' } `
-    | ForEach-Object { 
-        "Process={0,-25} CPU_Usage={1,-12} Memory_Usage_(MB)={2,-16}" -f `
-            $_.Name,$_.PercentProcessorTime,([math]::Round($_.WorkingSetPrivate/1Mb,2))
+[string[]]$servers= Get-Content '..\listado_ip2.txt' # Lista de servidores
+[string[]]$DNS= Get-Content '..\listado_dns2.txt' # Lista de dns
+$contador = 0
+$ruta = ".\log\logins_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
+"DNS;IP;NombreProceso;IDSesion;Error" >> $ruta
+$fecha = Get-Date -Uformat "%d%m%Y%H%M"
+
+foreach ($server in $servers) {
+    try {
+        $procesos = tasklist /S $server /V
+        foreach ($proceso in $procesos) {
+            $linea = $DNS[$contador] + ";" + $server
+            $linea = $linea + ";" + $proceso.ProcessName
+            $linea = $linea + ";" + $proceso.SessionId + ";0"
+            $linea >> $ruta
+            $linea = ""
+        }
+    } catch {
+        $linea = $DNS[$contador] + ";" + $server + ";;;1"
+        $linea >> $ruta
     }
+    $contador = $contador + 1
+}

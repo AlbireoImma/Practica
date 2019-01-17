@@ -3,8 +3,8 @@ $cpu_threshold = 85 # Umbral de peligro del uso de la CPU, se anota un hit si es
 $sleep_interval = 1 # Cantidad de timepo que el proceso duerme entre muestras
 $hit = 0 # Variable utilizada para contar la cantidad de veces que se supera el umbral en las muestras
 $nombrepc = Hostname # Se podrían obtener o sacar más datos que tansolo el nombre
-$email = "faam1612@gmail.com" # Correo destino es un correo autoenviado de la persona a si misma
-$pass = "warofworld1612" # Contraseña del correo para las credenciales
+$email = "doe91758@gmail.com" # Correo destino es un correo autoenviado de la persona a si misma
+$pass = "QwertyAsdfg12345" # Contraseña del correo para las credenciales
 $smtpServer = "smtp.gmail.com" # Direccion del servidor smtp
 $msg = new-object Net.Mail.MailMessage # Creacion del objeto mensaje/correo
 $smtp = new-object Net.Mail.SmtpClient($smtpServer) # Creación del objeto con la conexión smtp
@@ -21,20 +21,17 @@ $msg.Body = "Uso alto de la CPU
 En el PC con nombre: $($nombrepc)
 Trabajos
 " + $jobs
-while($true)
-{
+while($true){
     # Iteramos desde 1 hasta la variable $repeat_count declarada al inicio, esta nos dicta cuantas muestras tomaremos
     write-host [(Get-Date -Format g)]"Working..."
     foreach($turn in 1..$repeat_count) {
-        # Obtenemos la carga de la CPU mediante un wmi, este procedimiento cambia si el equipo tiene mas de una CPU
-        $cpu = (get-wmiobject Win32_PerfformattedData_PerfOS_Processor | select name,percentprocessortime | where {$_.name -eq "_Total"}).percentprocessortime
+        $cpu = (get-wmiobject Win32_PerfformattedData_PerfOS_Processor | select name,percentprocessortime | where {$_.name -eq "_Total"}).percentprocessortime # Obtenemos la carga de la CPU mediante un wmi
         write-host [(Get-Date -Format g)]"CPU utilization is Currently at $($cpu)%" # Imprimimos la carga actual de la muestra
         If($cpu -ge $cpu_threshold) { # Si la muestra supera nuestro umbral determinado por la variable $cpu_threshold
-            $hit = $hit+1 # Si se cumple la condición aumentamos nuestras muestras relevantes en uno
+            $hit = $hit + 1 # Si se cumple la condición aumentamos nuestras muestras relevantes en uno
         }
         start-sleep $sleep_interval # Dormimos el proceso durante el tiempo definido en la variable $sleep_interval definido al inicio
     }
-
     if($hit -eq 10) { # Si la cantidad de hits es igual a la cantidad de muestras, este valor puede ser cambiado pero no debe superar la cantidad de muestras
         write-host [(Get-Date -Format g)]"CPU utilization is over threshold"
         $SMTP.Credentials = New-Object System.Net.NetworkCredential("$email", "$pass"); # Creamos el objeto con las credenciales de conexión

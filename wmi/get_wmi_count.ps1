@@ -2,23 +2,51 @@ $entrada = @(([string]$args).split())
 
 
 function all_wmi {
-    $namespaces = @(Get-WmiObject -Namespace Root -Class __Namespace | Select-Object -Property Name).count
-    write-host "> Cantidad de Namespaces: $namespaces"
-    $nombres = @(Get-WmiObject -Namespace Root -Class __Namespace | Select-Object -Property Name)
-    $total = 0
-    foreach ($nombre in $nombres) {
-        $nombre = ($nombre).Name
-        write-host ">> NameSpace: $nombre" -foreground "DarkGray"
-        $nombre = "root/$nombre"
-        Get-WMIObject -List -Namespace $nombre
-        $wmi = @(Get-WMIObject -List -Namespace $nombre).count
-        write-host ">>> Cantidad de objetos wmi: $wmi" -foreground "DarkGreen"
-        $total += $wmi
+    write-host [(Get-Date -Format g)]"Inicio Script" -foreground "DarkGreen"
+    [string[]]$servers= Get-Content '.\listado_ip2.txt' # Lista de servidores
+    [string[]]$DNS= Get-Content '.\listado_dns2.txt' # Lista de dns
+    $header = '"DNS","IP","NameSpace","Wmi Class","Error"'
+    $contador = 0
+    #$namespaces = @(Get-WmiObject -Namespace Root -Class __Namespace -erroraction silentlycontinue | Select-Object -Property Name).count
+    #write-host "> Cantidad de Namespaces: $namespaces"
+    #$nombres = @(Get-WmiObject -Namespace Root -Class __Namespace | Select-Object -Property Name)
+    #$total = 0
+    $date = Get-Date -Uformat "%d%m%Y%H%M"
+    $ruta = ".\wmi\log\wmi_$date.csv"
+    $header >> $ruta
+    foreach($server in $servers){
+        write-host ">>> Servidor: $server" -foreground "Green"
+        $prefijo = '"' + $DNS[$contador] + '","' + $server + '",'
+        $nombres = @(Get-WmiObject -Namespace Root -Class __Namespace -computername $server -erroraction silentlycontinue | Select-Object -Property Name)
+        if ($?) {
+            foreach ($nombre in $nombres) {
+                $nombre = ($nombre).Name
+                write-host ">> NameSpace: $nombre" -foreground "DarkGray"
+                $nombre = "root/$nombre"
+                $wmis = Get-WMIObject -List -Namespace $nombre -computername $server -erroraction silentlycontinue
+                if($?){
+                    foreach($wmi in $wmis){
+                        $linea = $prefijo + '"' + $nombre + '","' + $wmi.name + '","0"'
+                        $linea >> $ruta
+                    }
+                } else {
+                    $linea = $prefijo +'"'+$nombre+'",,"1"' # Error de Namespace
+                    $linea >> $ruta
+                }
+                #write-host ">>> Cantidad de objetos wmi: $wmi" -foreground "DarkGreen"
+                #$total += $wmi
+            }
+        } else {
+            $linea = $prefijo + ',,"2"' # Error de acceso
+            $linea >> $ruta
+        }
+        $contador += 1
     }
-    write-host "> Total de clases wmi: $total"
+    #write-host "> Total de clases wmi: $total"
+    write-host [(Get-Date -Format g)]"Fin Script" -foreground "DarkGreen"
 }
 
-# all_wmi
+all_wmi
 
 function wmi_exist($name,$ip) {
     write-host $name $ip -foregroundcolor "Black" -backgroundcolor "Yellow"
@@ -35,4 +63,4 @@ function wmi_exist($name,$ip) {
 }
 
 # Ejemplo entrada -> PS> .\get_wmi_count.ps1 $clase $ip
-wmi_exist $entrada[0] $entrada[1]
+# wmi_exist $entrada[0] $entrada[1]

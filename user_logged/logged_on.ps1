@@ -4,11 +4,12 @@ $user = "<user name>" # Si se desea buscar un usuario en especifico
 $date = Get-Date -Format d
 [string[]]$DNS= Get-Content '.\listado_dns2.txt' # Lista de dns
 $contador = 0
-write-host [(Get-Date -Format g)]" Inicio de Trabajo" -Foreground "Green"
+$ruta = ".\user_logged\log\logins_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
+write-host [(Get-Date -Format g)]"Inicio de Trabajo" -Foreground "Green"
 function on_log($servers){
-	"IP;DNS;LOGID;LOGNAME;FECHA;TIPO;ERROR" >> ".\user_logged\log\logins_$date.csv"
+	"IP;DNS;LOGID;LOGNAME;FECHA;TIPO;ERROR" >> $ruta
 	foreach ($server in $servers){
-		write-host ">>>> Analizando server: $server" -foreground "Yellow"
+		write-host [(Get-Date -Format g)]"Analizando server: $server" -foreground "DarkGreen"
 		$logons = gwmi win32_loggedonuser -computername $server -erroraction silentlycontinue # Obtenemos los wmi de los inicios de sesión
 		if($?){
 			foreach ($logon in $logons){ # Recorremos los logins del servidor
@@ -17,20 +18,20 @@ function on_log($servers){
 				$logonid =  $logonid -replace '["]',''
 				$session = get-wmiobject -class "Win32_LogonSession" -ComputerName $server -erroraction silentlycontinue |? {$_.LogonId -match $logonid}
 				$type = $session.LogonType
-				if ($session.LogonType -eq "10"){
-					$fecha = $session.StartTime
-					$linea = $server + ";" + $DNS[$contador] + ";" + $logonid + ";" + $logoname + ";" + $fecha + ";" + $type + ";"
-					$linea >> ".\user_logged\log\logins_$date.csv"
-				}
+				$fecha = $session.StartTime
+				$linea = $server + ";" + $DNS[$contador] + ";" + $logonid + ";" + $logoname + ";" + $fecha + ";" + $type + ";"
+				$linea >> $ruta
 			}
 		} else {
 			$linea = $server + ";" + $DNS[$contador] + ";;;;; Error al obtener las clases wmi"
-			$linea >> ".\user_logged\log\logins_$date.csv"
+			$linea >> $ruta
 		}
-		write-host "<<<< Servidor Analizado: $server" -foreground "Green"
+		write-host [(Get-Date -Format g)]"Servidor Analizado: $server" -foreground "Green"
 		$contador = $contador + 1
+		$job | Remove-Job -erroraction silentlycontinue
+		$jobber | Remove-Job -erroraction silentlycontinue
 	}
-	write-host [(Get-Date -Format g)]" Final del Trabajo" -Foreground "Green"
+	write-host [(Get-Date -Format g)]"Final del Trabajo" -Foreground "Green"
 }
 
 function log_individual($server){
