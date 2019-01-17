@@ -104,3 +104,79 @@ Lista secuencial de la bitácora día a día
 - Recopilar distintas métricas de las ya obtenidas
 - Buscar soluciones para el error 0x6BA, ya sea mediante el registro o reglas de firewall
 ```
+
+#### Viernes 11 de Enero del 2018 [7,5 Horas] [62h]
+```
+##### Hora Inicio
+08:30
+##### Hora término
+16:00
+##### Actividades Desarrolladas
+- Mapeo de la red interna con nmap
+- Documentación sobre el uso de kali en conjunto con sus herramientas, así como el levantar un entorno explotable para la realización de pruebas seguras
+- Representación de datos relevantes en Power BI de los CSV
+##### Actividades Pendientes
+- Buscar soluciones para el error 0x6BA, ya sea mediante el registro o reglas de firewall
+- Investigar monitoreo de endpoints
+- Investigar sobre el verbose de los logs de nmap
+```
+
+#### Lunes 14 de Enero del 2018 [9,5 Horas] [71,5h]
+```
+##### Hora Inicio
+08:30
+##### Hora término
+18:00
+##### Actividades Desarrolladas
+- Cambio en el .bat y mejoras en el uso de la memoria para el uso de los scripts
+- Recopilación de los csv
+##### Actividades Pendientes
+- Investigar funcionalidades sobre la consola metasploit
+- Buscar vulnerabilidades dentro del conjunto de servidores
+- Crear herramientas que usen los scripts de manera automática y sistematizada
+```
+
+#### Martes 15 de Enero del 2018 [9,5 Horas] [81h]
+```
+##### Hora Inicio
+08:30
+##### Hora término
+18:00
+##### Actividades Desarrolladas
+- Script que obtiene procesos de las máquinas dado un rango o lista de ip
+##### Actividades Pendientes
+- Desarrollar un script para obtener las tareas programadas de los equipos de forma remota
+- Resolver problema RCP en la comunicación entre las máquinas
+```
+
+#### Miércoles 16 de Enero del 2018 [9,5 Horas] [90,5h]
+```
+##### Hora Inicio
+08:30
+##### Hora término
+18:00
+##### Actividades Desarrolladas
+- Script que obtiene las tareas programadas dado rangos o ip
+##### Actividades Pendientes
+- Añadir al menú los scripts nuevos
+- Documentar los scripts de una manera más detallada
+- Resolver problema RCP en la comunicación entre las máquinas
+- Documentar sobre estándares ISOS sobre seguridad infromática empresaria
+```
+
+#### Jueves 17 de Enero del 2018 [9,5 Horas] [100h]
+```
+##### Hora Inicio
+08:30
+##### Hora término
+18:00
+##### Actividades Desarrolladas
+- Búsqueda e investigación en incidentes de spam y virus via macro con archivos adjuntos *.doc
+- Monitoreo de las configuraciones de la herramienta anti-spam y reporte/manual sobre su uso y configuración
+- Cambio en la implementación de script para obtener las actualizaciones de máquinas en un rango de ip
+##### Actividades Pendientes
+- Completar script que identifica vulnerabilidades dada una vulnerabilidad (MSXX-XXX) y sus parches (KBXXXXXXX)
+- Documentar sobre estándares ISOS sobre seguridad infromática empresarial
+- Documentar los scripts de una manera más detallada
+- Resolver problema RCP en la comunicación entre las máquinas
+```
