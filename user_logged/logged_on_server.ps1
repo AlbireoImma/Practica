@@ -1,10 +1,10 @@
 #IP;DNS;LOGID;LOGNAME;FECHA;TIPO;ERROR
 $user = "<user name>" # Si se desea buscar un usuario en especifico
-[string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
+[string[]]$servers= Get-Content '.\txts\IP_SERVER.txt' # Lista de servidores
 $date = Get-Date -Format d
-[string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns
+[string[]]$DNS= Get-Content '.\txts\DNS_SERVER.txt' # Lista de dns
 $contador = 0
-$ruta = ".\log\LOGINS\logins_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
+$ruta = ".\log\LOGINS\logins_SERVER_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
 write-host [(Get-Date -Format g)]"Inicio de Trabajo" -Foreground "Green"
 function on_log($servers){
 	"IP;DNS;LOGID;LOGNAME;FECHA;TIPO;ERROR" >> $ruta

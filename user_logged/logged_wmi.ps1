@@ -1,9 +1,9 @@
 # SERVER;DNS;TOTAL;ACTIVAS;ERROR
-[string[]]$servers= Get-Content '.\listado_ip2.txt' # Lista de servidores
-[string[]]$DNS= Get-Content '.\listado_dns2.txt' # Lista de dns
+[string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
+[string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns
 $contador = 0 # Para movernos por los nombres de dominio mientras recorremos los servidores
 $date = Get-Date -Format d # Fecha para asuntos de formato
-$ruta = ".\user_logged\log\sesiones_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
+$ruta = ".\log\SESIONES\sesiones_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
 write-host [(Get-Date -Format g)]" Inicio de Script" -foreground "Green"
 "SERVER;DNS;TOTAL;ACTIVAS;ERROR" >> $ruta
 foreach ($server in $servers){

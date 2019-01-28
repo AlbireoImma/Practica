@@ -1,0 +1,11 @@
+# Buscar los PC dentro de un rango
+SELECT [NAME],[TIPO] FROM [sondeoBK].[dbo].[MAESTRO_DNS] WHERE IP LIKE 'Rango%'
+# Ejemplo practico con el rango 10.13.101.0-10.13.101.255
+SELECT [NAME],[TIPO] FROM [sondeoBK].[dbo].[MAESTRO_DNS] WHERE IP LIKE '10.13.101.%'
+# Buscar de donde es la IP XXX.YYY.ZZZ.AAA
+SELECT * FROM MAESTRO_RANGO WHERE RANGO LIKE 'XXX.YYY.ZZZ.%'
+# Obtener todas las vulnerabilidades en la BD
+SELECT * FROM sondeoBK.dbo.MAESTRO_MS
+# Obtener las máquinas parcheadas para un MS especifico (Ejemplo para MS17-010)
+SELECT NAME,TIPO FROM sondeoBK.dbo.MAESTRO_DNS WHERE IP IN
+(SELECT IP FROM sondeoBK.dbo.HISTORICO_KB WHERE KB IN (SELECT KB FROM sondeoBK.dbo.MAESTRO_KB WHERE MS = 'MS17-010'))

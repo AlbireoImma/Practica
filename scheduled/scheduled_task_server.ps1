@@ -1,8 +1,8 @@
 $header = "DNS,Nombre de host,Nombre de tarea,Hora proxima ejecucion,Estado,Modo de inicio de sesion,Ultimo tiempo de ejecucion,Ultimo resultado,Autor,Tarea que se ejecutara,Iniciar en,Comentario,Estado de tarea programada,Tiempo de inactividad,Administracion de energia,Ejecutar como usuario,Eliminar tarea si no se vuelve a programar,Eliminar tarea si ejecuta durante X horas y X minutos,Programación,Tipo de programacion,Hora de inicio,Fecha de inicio,Fecha final,Dias,Meses,Repetir: cada,Repetir: hasta: hora,Repetir: hasta: duracion,Repetir: detener si aun se ejecuta,Error"
-[string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
-[string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns
+[string[]]$servers= Get-Content '.\txts\IP_SERVER.txt' # Lista de servidores
+[string[]]$DNS= Get-Content '.\txts\DNS_SERVER.txt' # Lista de dns
 $contador = 0
-$ruta = ".\log\TAREAS_PROGRAMADAS\tareas_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
+$ruta = ".\log\TAREAS_PROGRAMADAS\tareas_SERVER_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
 $header >> $ruta
 write-host "Archivo siendo generado en '" + $ruta + "'"
 write-host [(Get-Date -Format g)]"Inicio Script: $server [$dominio]" -foreground "DarkGreen"

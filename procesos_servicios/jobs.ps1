@@ -1,7 +1,7 @@
-[string[]]$servers= Get-Content '..\listado_ip2.txt' # Lista de servidores
-[string[]]$DNS= Get-Content '..\listado_dns2.txt' # Lista de dns
+[string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
+[string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns
 $contador = 0
-$ruta = ".\log\logins_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
+$ruta = ".\log\PROCESOS\procesos_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
 "DNS;IP;NombreProceso;IDSesion;Error" >> $ruta
 $fecha = Get-Date -Uformat "%d%m%Y%H%M"
 

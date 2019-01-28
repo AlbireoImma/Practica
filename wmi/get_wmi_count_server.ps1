@@ -3,8 +3,8 @@ $entrada = @(([string]$args).split())
 
 function all_wmi {
     write-host [(Get-Date -Format g)]"Inicio Script" -foreground "DarkGreen"
-    [string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
-    [string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns
+    [string[]]$servers= Get-Content '.\txts\IP_SERVER.txt' # Lista de servidores
+    [string[]]$DNS= Get-Content '.\txts\DNS_SERVER.txt' # Lista de dns
     $header = '"DNS","IP","NameSpace","Wmi Class","Error"'
     $contador = 0
     #$namespaces = @(Get-WmiObject -Namespace Root -Class __Namespace -erroraction silentlycontinue | Select-Object -Property Name).count
@@ -26,18 +26,18 @@ function all_wmi {
                 $wmis = Get-WMIObject -List -Namespace $nombre -computername $server -erroraction silentlycontinue
                 if($?){
                     foreach($wmi in $wmis){
-                        $linea = $prefijo + '"' + $nombre + '","' + $wmi.name + '","0"'
+                        $linea = $prefijo + '"' + $nombre + '","' + $wmi.name + '","Sin Errores"'
                         $linea >> $ruta
                     }
                 } else {
-                    $linea = $prefijo +'"'+$nombre+'",,"1"' # Error de Namespace
+                    $linea = $prefijo +'"'+$nombre+'",,"Error Namespace"' # Error de Namespace
                     $linea >> $ruta
                 }
                 #write-host ">>> Cantidad de objetos wmi: $wmi" -foreground "DarkGreen"
                 #$total += $wmi
             }
         } else {
-            $linea = $prefijo + ',,"2"' # Error de acceso
+            $linea = $prefijo + ',,"Error Acceso"' # Error de acceso
             $linea >> $ruta
         }
         $contador += 1

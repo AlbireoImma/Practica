@@ -1,4 +1,4 @@
-﻿param(
+param(
     # Parametros posibles que se pueden entregar
     [CmdletBinding()] 
     [Parameter(ValueFromPipeline=$true,
@@ -12,9 +12,9 @@ begin {
 process {
     write-host [(Get-Date -Format g)]" Inicio de Trabajo" -Foreground "Green"
     $date = (Get-Date).ToString("%d%m%yyyy_%HH:%mm") # Fecha para el formato del archivo se puede usar g o f como argumento para distintos formatos
-    $ruta = ".\log\LOGINS\users_verbose_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
-    [string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
-    [string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns
+    $ruta = ".\log\LOGINS\users_verbose_SERVER_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
+    [string[]]$servers= Get-Content '.\txts\IP_SERVER.txt' # Lista de servidores
+    [string[]]$DNS= Get-Content '.\txts\DNS_SERVER.txt' # Lista de dns
     $contador = 0 # Para movernos por los nombres de dominio mientras recorremos los servidores
     $ComputerName = $servers # Asimilamos los servidores en el archivo "listado_ip2.txt"
     # Encabezado del CSV el cual da el orden y tipo de separacion al archivo

@@ -1,6 +1,6 @@
 #IP;DNS;USER;SESION;ID;STATE;IDLE;LOGON;ERROR
-[string[]]$servers = Get-Content '.\listado_ip2.txt' # Archivo con las ip a analizar
-[string[]]$DNS= Get-Content '.\listado_dns2.txt' # Lista de dns
+[string[]]$servers = Get-Content '.\txts\IP.txt' # Archivo con las ip a analizar
+[string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns
 $date = Get-Date -Format d # Fecha para asuntos de formato
 write-host [(Get-Date -Format f)]" Iniciando Script" -foreground "Yellow"
 # $date + " Iniciando barrido de servidores" >> ".\user_logged\log\users_$date.log"
@@ -24,13 +24,13 @@ foreach ($server in $servers) {
 				$linea = $linea + $Parsed_Server[4] + ";" #STATE
 				$linea = $linea + $Parsed_Server[5] + ";" #IDLE TIME
 				$linea = $linea + $Parsed_Server[6] + ";" #LOGON TIME
-				$linea >> ".\user_logged\log\users_$date.csv"
+				$linea >> ".\log\USERS\users_$date.csv"
 			}
 		}
 	}
 	else {
 		$linea = $server + ";" + $DNS[$contador] + ";;;;;;;Error al hacer la query, problemas de RPC, Firewall o no hay usuarios conectados"
-		$linea >> ".\user_logged\log\users_$date.csv"
+		$linea >> ".\log\USERS\users_$date.csv"
 	}
 	$contador = $contador + 1
 	$trap = 0

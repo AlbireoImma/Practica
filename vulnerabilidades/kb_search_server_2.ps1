@@ -3,13 +3,13 @@ cls
 $vuln = "MS17-010"
 $MS = ".\txts\" + $vuln + ".txt"
 
-[string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
-[string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns
+[string[]]$servers= Get-Content '.\txts\IP_SERVER.txt' # Lista de servidores
+[string[]]$DNS= Get-Content '.\txts\DNS_SERVER.txt' # Lista de dns
 [string[]]$KBS= Get-Content $MS # Lista de dns
 
 $FLAG = 0
 $contador = -1
-$ruta = ".\log\KB_SEARCH\$($vuln)_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
+$ruta = ".\log\KB_SEARCH\$($vuln)_SERVER_$(Get-Date -Uformat "%d%m%Y%H%M").csv"
 "IP,HOSTNAME,KB_ID,MS,INSTALADO,ERROR,VALOR,INCERTIDUMBRE" >> $ruta
 
 foreach ($server in $servers) {
