@@ -1,3 +1,7 @@
+### logged_on_server.ps1 - Francisco Abarca - 06-02-2019
+## Script que dado un listado de IP (IP_SERVER.txt) obtiene los usuarios conectados en esa IP
+## generando un archivo CSV con el listado detallado de los usuarios obtenidos
+
 #IP;DNS;LOGID;LOGNAME;FECHA;TIPO;ERROR
 $user = "<user name>" # Si se desea buscar un usuario en especifico
 [string[]]$servers= Get-Content '.\txts\IP_SERVER.txt' # Lista de servidores
@@ -34,6 +38,7 @@ function on_log($servers){
 	write-host [(Get-Date -Format g)]"Final del Trabajo" -Foreground "Green"
 }
 
+# Funcion usada para analisis individual/debug
 function log_individual($server){
 	$logons = gwmi win32_loggedonuser -computername $server
 	foreach ($logon in $logons){ # Recorremos los logins del servidor

@@ -1,9 +1,12 @@
-function get-loggedonuser ($computername){
+### get_auth.ps1 - Francisco Abarca - 06-02-2019
+## Script que dado un listado de IP (IP_SERVER.txt) obtiene las sesiones (inicios/request) en esa IP
+## generando un archivo log con el listado detallado de los logins obtenidos
 
+
+function get-loggedonuser ($computername){ # Funcion usada para obtener los logins que recibe como parametro la IP
     $regexa = '.+Domain="(.+)",Name="(.+)"$' # Expresión regular para el nombre mas el dominio
     $regexd = '.+LogonId="(\d+)"$' # Expresión regular para el id del login
-
-    $logontype = @{
+    $logontype = @{ # Listado con los tipos de logins para pasar de ID -> Verbose
         "0"="Local System"
         "2"="Interactive" #(login local)
         "3"="Network" # (login remoto)
@@ -31,17 +34,18 @@ function get-loggedonuser ($computername){
         $loggedonuser | Add-Member -MemberType NoteProperty -Name "Session" -Value $_.logonid # Añadir el id de la sesion al objeto
         $loggedonuser | Add-Member -MemberType NoteProperty -Name "User" -Value $session_user[$_.logonid] # Añadir el usuario al objeto Dominio\usuario
         $loggedonuser | Add-Member -MemberType NoteProperty -Name "Type" -Value $logontype[$_.logontype.tostring()] # Añadir el tipo de acceso al objeto
-        $loggedonuser | Add-Member -MemberType NoteProperty -Name "Auth" -Value $_.authenticationpackage # Añadir el tipo de autentificación al objeto        $loggedonuser | Add-Member -MemberType NoteProperty -Name "StartTime" -Value $starttime # Añadir la fecha inicio de sesión
+        $loggedonuser | Add-Member -MemberType NoteProperty -Name "Auth" -Value $_.authenticationpackage # Añadir el tipo de autentificación al objeto 
+        $loggedonuser | Add-Member -MemberType NoteProperty -Name "StartTime" -Value $starttime # Añadir la fecha inicio de sesión
         $loggedonuser
     }
 }
 
-$date = Get-Date -Format d
+$date = Get-Date -Format d # generamos una variable con la fecha a modo de diferenciar el log
 [string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
-Get-Date -Format f >> ".\log\LOGINS\auth_$date.log"
-foreach($ip in $servers){
-	"@@@@@@@@@@@@@@@@" >> ".\log\LOGINS\auth_$date.log"
-	$ip >> ".\log\LOGINS\auth_$date.log"
-	"@@@@@@@@@@@@@@@@" >> ".\log\LOGINS\auth_$date.log"
-	get-loggedonuser($ip) | Format-List >> ".\log\LOGINS\auth_$date.log"
+Get-Date -Format f >> ".\log\LOGINS\auth_$date.log" # Insertamos la fecha de inicio en el log
+foreach($ip in $servers){ # Recorremos las IP en la lista $servers
+	"@@@@@@@@@@@@@@@@" >> ".\log\LOGINS\auth_$date.log" # Insertamos delimitador para la IP en el log
+	$ip >> ".\log\LOGINS\auth_$date.log" # Insertamos la IP en el log
+	"@@@@@@@@@@@@@@@@" >> ".\log\LOGINS\auth_$date.log" # Insertamos delimitador para la IP en el log
+	get-loggedonuser($ip) | Format-List >> ".\log\LOGINS\auth_$date.log" # Insertamos la informacion obtenida de la IP por la funcion
 }

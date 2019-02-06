@@ -1,3 +1,7 @@
+### logged_on_server.ps1 - Francisco Abarca - 06-02-2019
+## Script que dado un listado de IP (IP.txt) obtiene los usuarios conectados en esa IP
+## generando un archivo CSV con el listado detallado de los usuarios obtenidos
+
 #IP;DNS;LOGID;LOGNAME;FECHA;TIPO;ERROR
 $user = "<user name>" # Si se desea buscar un usuario en especifico
 [string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores

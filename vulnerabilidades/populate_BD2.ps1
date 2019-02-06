@@ -1,3 +1,8 @@
+### populate_BD.ps1 - Francisco Abarca - 06-02-2019
+## Script que genera un script SQL para SQL Server
+## el cual pobla la tabla HISTORICO_KB
+
+
 cls
 
 [string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores

@@ -1,8 +1,6 @@
 import csv
 import sys
 
-
-
 with open("./user_logged/log/"+str(sys.argv[1]),"rb") as fuente:
     with open("sin_BOM.txt","w+b") as destino:
         contenido = fuente.read()

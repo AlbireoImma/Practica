@@ -1,4 +1,9 @@
-﻿$repeat_count = 10 # Cantidad de iteraciones
+﻿### cpu.ps1 - Francisco Abarca - 06-02-2019
+## Script que obtiene la utilizacion de la CPU del pc en el cual se ejecuta
+## enviando una alerta por correo en caso de superarse un treshold establecido
+
+
+$repeat_count = 10 # Cantidad de iteraciones
 $cpu_threshold = 85 # Umbral de peligro del uso de la CPU, se anota un hit si es mayor o igual que este valor
 $sleep_interval = 1 # Cantidad de timepo que el proceso duerme entre muestras
 $hit = 0 # Variable utilizada para contar la cantidad de veces que se supera el umbral en las muestras
@@ -25,7 +30,8 @@ while($true){
     # Iteramos desde 1 hasta la variable $repeat_count declarada al inicio, esta nos dicta cuantas muestras tomaremos
     write-host [(Get-Date -Format g)]"Working..."
     foreach($turn in 1..$repeat_count) {
-        $cpu = (get-wmiobject Win32_PerfformattedData_PerfOS_Processor | select name,percentprocessortime | where {$_.name -eq "_Total"}).percentprocessortime # Obtenemos la carga de la CPU mediante un wmi
+        # Obtenemos la carga de la CPU mediante wmi
+        $cpu = (get-wmiobject Win32_PerfformattedData_PerfOS_Processor | select name,percentprocessortime | where {$_.name -eq "_Total"}).percentprocessortime
         write-host [(Get-Date -Format g)]"CPU utilization is Currently at $($cpu)%" # Imprimimos la carga actual de la muestra
         If($cpu -ge $cpu_threshold) { # Si la muestra supera nuestro umbral determinado por la variable $cpu_threshold
             $hit = $hit + 1 # Si se cumple la condición aumentamos nuestras muestras relevantes en uno

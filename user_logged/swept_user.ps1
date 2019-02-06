@@ -1,3 +1,8 @@
+### swept_user.ps1 - Francisco Abarca - 06-02-2019 [Uso de Query][RPC-Dependiente][High Error %]
+## Script que dado un listado de IP (IP.txt) obtiene los usuarios conectados en esa IP
+## generando un archivo CSV con el listado detallado de los usuarios obtenidos
+
+
 #IP;DNS;USER;SESION;ID;STATE;IDLE;LOGON;ERROR
 [string[]]$servers = Get-Content '.\txts\IP.txt' # Archivo con las ip a analizar
 [string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns

@@ -1,3 +1,8 @@
+### logged_wmi.ps1 - Francisco Abarca - 06-02-2019 [Descontinuada][No Desarrollada Totalmente]
+## Script que dado un listado de IP (IP.txt) obtiene los usuarios conectados en esa IP
+## generando un archivo CSV con el listado detallado de los usuarios obtenidos
+
+
 # SERVER;DNS;TOTAL;ACTIVAS;ERROR
 [string[]]$servers= Get-Content '.\txts\IP.txt' # Lista de servidores
 [string[]]$DNS= Get-Content '.\txts\DNS.txt' # Lista de dns

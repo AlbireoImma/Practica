@@ -1,4 +1,8 @@
-﻿$nombrepc = Hostname # Se podrían obtener o sacar más datos que tansolo el nombre
+﻿### email.ps1 - Francisco Abarca - 06-02-2019
+## Script que dada las variables necesarias es capaz de enviar un correo
+## al mail objetivo, la idea es usarlo para notificar eventos en los scripts powershell
+
+$nombrepc = Hostname # Se podrían obtener o sacar más datos que tansolo el nombre
 $email = "" # Correo destino es un correo autoenviado de la persona a si misma
 $pass = "" # Contraseña del correo para las credenciales
 $smtpServer = "smtp.gmail.com" # Direccion del servidor smtp

@@ -1,4 +1,8 @@
-﻿$Threshold = -100;
+﻿### process.ps1 - Francisco Abarca - 06-02-2019 [Abandonado/No desarrollado totalmente] [para una version completa/funcional ver variantes en la carpeta uso_cpu]
+## Script el cual retrae el uso total de la CPU mediante wmi, su uso es manual y derivado en la maquina que se ejecute
+
+
+$Threshold = -100;
 $Counter = "\Process(*)\% Processor Time";
 $Data = Get-Counter $Counter;
 $Cores = (Get-WmiObject -class win32_processor -Property numberOfCores).numberOfCores;

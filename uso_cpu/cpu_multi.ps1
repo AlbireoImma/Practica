@@ -1,4 +1,9 @@
-﻿Function Average($array)
+﻿### cpu_multi.ps1 - Francisco Abarca - 06-02-2019 [Descontinuado]
+## Script que obtiene la utilizacion de la CPU del pc en el cual se ejecuta
+## enviando una alerta por correo en caso de superarse un treshold establecido
+
+
+Function Average($array)
 {
     $largo = 0;
 	$suma = 0;
@@ -13,9 +18,9 @@ $repeat_count = 10 # Cantidad de iteraciones
 $cpu_threshold = 85 # Umbral de peligro del uso de la CPU, se anota un hit si es mayor o igual que este valor
 $sleep_interval = 1 # Cantidad de timepo que el proceso duerme entre muestras
 $hit = 0 # Variable utilizada para contar la cantidad de veces que se supera el umbral en las muestras
-$nombrepc = Hostname # Se podrían obtener o sacar más datos que tansolo el nombre
-$email = "faam1612@gmail.com" # Correo destino es un correo autoenviado de la persona a si misma
-$pass = "warofworld1612" # Contraseña del correo para las credenciales
+$nombrepc = Hostname # Se podrían obtener o sacar más datos que tan solo el nombre
+$email = "" # Correo destino es un correo autoenviado de la persona a si misma
+$pass = "" # Contraseña del correo para las credenciales
 $smtpServer = "smtp.gmail.com" # Direccion del servidor smtp
 $msg = new-object Net.Mail.MailMessage # Creacion del objeto mensaje/correo
 $smtp = new-object Net.Mail.SmtpClient($smtpServer) # Creación del objeto con la conexión smtp

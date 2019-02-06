@@ -1,3 +1,7 @@
+### generate_MAESTRO_KB.ps1 - Francisco Abarca - 06-02-2019
+## Script que genera un script SQL para SQL Server, el cual recibe como parametros
+## una vulnerabilidad y la fecha en un formato establecido, el .sql generado completa la tabla MAESTRO_KB
+
 param([string]$vuln = "",[string]$date = "")
 # date de la forma YYYY-MM-DD
 $MS = "..\txts\" + $vuln + ".txt"

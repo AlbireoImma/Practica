@@ -1,4 +1,8 @@
-﻿param(
+﻿### Get-LoggedOnUser.ps1 - Francisco Abarca - 06-02-2019
+## Script que dado un listado de IP (IP.txt) obtiene los usuarios conectados en esa IP
+## generando un archivo CSV con el listado detallado de los usuarios obtenidos
+
+param(
     # Parametros posibles que se pueden entregar
     [CmdletBinding()] 
     [Parameter(ValueFromPipeline=$true,
